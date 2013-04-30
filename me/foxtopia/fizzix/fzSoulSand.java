@@ -20,7 +20,6 @@ import net.minecraft.world.World;
 
 public class fzSoulSand extends BlockSand
 {
-	public static Icon txt;
 
     public static boolean fallInstantly = false;
     public fzSoulSand(int par1)
@@ -36,15 +35,16 @@ public class fzSoulSand extends BlockSand
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister) {
     	// TODO Auto-generated method stub
-      txt =	par1IconRegister.registerIcon("hellsand");
+      this.blockIcon =	par1IconRegister.registerIcon("hellsand");
      
     }
+
     @Override
     @SideOnly(Side.CLIENT)
     public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
     		int par3, int par4, int par5) {
     	// TODO Auto-generated method stub
-    	return this.txt;
+    	return this.blockIcon;
     }
    
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)

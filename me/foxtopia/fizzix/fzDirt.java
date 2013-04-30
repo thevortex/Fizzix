@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 public class fzDirt extends BlockSand {
 
     public static boolean fallInstantly = false;
-    public Icon txt;
+   
     public fzDirt(int par1)
     {
         super(par1, Material.ground);
@@ -30,20 +30,26 @@ public class fzDirt extends BlockSand {
     {
         super(par1, par2Material);
     }
-   @Override
+  
+@Override
 @SideOnly(Side.CLIENT)
 public void registerIcons(IconRegister par1IconRegister) {
 	// TODO Auto-generated method stub
-  txt =	par1IconRegister.registerIcon("dirt");
- 
+  this.blockIcon =	par1IconRegister.registerIcon("dirt");
+  
 }
+
 @Override
 @SideOnly(Side.CLIENT)
 public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
 		int par3, int par4, int par5) {
 	// TODO Auto-generated method stub
-	return this.txt;
+	return this.blockIcon;
 }
+
+
+
+
     /**
      * Called whenever the block is added into the world. Args: world, x, y, z
      */
