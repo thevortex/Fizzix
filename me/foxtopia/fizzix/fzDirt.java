@@ -36,6 +36,7 @@ public class fzDirt extends BlockSand {
 public void registerIcons(IconRegister par1IconRegister) {
 	// TODO Auto-generated method stub
   this.blockIcon =	par1IconRegister.registerIcon("dirt");
+  
 
 }
 @SideOnly(Side.CLIENT)
@@ -50,7 +51,6 @@ public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
 	// TODO Auto-generated method stub
 	return this.blockIcon;
 }
-
 
 
 
