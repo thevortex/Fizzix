@@ -1,12 +1,18 @@
 package me.foxtopia.fizzix;
 
+import java.util.Arrays;
+
+import org.bouncycastle.asn1.cms.MetaData;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
@@ -21,33 +27,32 @@ import cpw.mods.fml.relauncher.SideOnly;
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
 public class Fizzix {
 
-   
+	public static Block Grass;
 	public static Block Dirt;
 	public static Block Clay;
 	public static Block SoulSand;
 	public static Block CobbleStone;
 	 public Fizzix()
 	 {
-		 
+		
 	 }
-	   
 	 @PreInit
 	 public void preInit(FMLPreInitializationEvent event)
 	 {
-		 
+		// Block.blocksList[2] = null;
 		 Block.blocksList[3] = null;
 		 Block.blocksList[4] = null;
 		 Block.blocksList[82] = null;
 		 Block.blocksList[88] = null;
 		 
 		 
-		 Dirt = new fzDirt(3,Material.ground).setUnlocalizedName("dirt");
-		 CobbleStone = new fzCobbleStone(4,Material.rock).setUnlocalizedName("stonebrick");
-		 Clay = new fzClay(82,Material.clay).setUnlocalizedName("clay");
-		 SoulSand = new fzSoulSand(88,Material.sand).setUnlocalizedName("hellsand");
+		// Grass = new fzGrass(2).setUnlocalizedName("grass");
+		 Dirt = new fzDirt(3,Material.ground).setUnlocalizedName("dirt").setHardness(0.5F).setStepSound(Block.soundGravelFootstep);
+		 CobbleStone = new fzCobbleStone(4,Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("stonebrick");
+		 Clay = new fzClay(82,Material.clay).setHardness(0.6F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("clay");
+		 SoulSand = new fzSoulSand(88,Material.sand).setHardness(0.5F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("hellsand");
 		 
-		 
-		 
+		 //GameRegistry.registerBlock(Grass,"grass");
 		 GameRegistry.registerBlock(Dirt,"dirt");
 		 GameRegistry.registerBlock(CobbleStone,"stonebrick");
 		 GameRegistry.registerBlock(Clay,"clay");
@@ -55,5 +60,5 @@ public class Fizzix {
 		 
 		 
 	 }
-	 
+	
 }
