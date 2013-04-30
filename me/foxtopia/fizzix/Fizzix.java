@@ -25,6 +25,7 @@ public class Fizzix {
 	public static Block Dirt;
 	public static Block Clay;
 	public static Block SoulSand;
+	public static Block CobbleStone;
 	 public Fizzix()
 	 {
 		 
@@ -35,18 +36,22 @@ public class Fizzix {
 	 {
 		 
 		 Block.blocksList[3] = null;
+		 Block.blocksList[4] = null;
 		 Block.blocksList[82] = null;
 		 Block.blocksList[88] = null;
 		 
-		 Dirt = new fzDirt(3,Material.ground).setUnlocalizedName("Dirt");
-		 Clay = new fzClay(82,Material.clay).setUnlocalizedName("Clay");
-		 SoulSand = new fzSoulSand(88,Material.sand).setUnlocalizedName("SoulSand");
+		 
+		 Dirt = new fzDirt(3,Material.ground).setUnlocalizedName("dirt");
+		 CobbleStone = new fzCobbleStone(4,Material.rock).setUnlocalizedName("stonebrick");
+		 Clay = new fzClay(82,Material.clay).setUnlocalizedName("clay");
+		 SoulSand = new fzSoulSand(88,Material.sand).setUnlocalizedName("hellsand");
 		 
 		 
 		 
-		 GameRegistry.registerBlock(Dirt,"Dirt");
-		 GameRegistry.registerBlock(Clay,"Clay");
-		 GameRegistry.registerBlock(SoulSand,"SoulSand");
+		 GameRegistry.registerBlock(Dirt,"dirt");
+		 GameRegistry.registerBlock(CobbleStone,"stonebrick");
+		 GameRegistry.registerBlock(Clay,"clay");
+		 GameRegistry.registerBlock(SoulSand,"hellsand");
 		 
 		 
 	 }

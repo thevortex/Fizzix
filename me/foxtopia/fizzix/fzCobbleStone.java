@@ -11,65 +11,53 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityFallingSand;
+import net.minecraft.item.Item;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class fzDirt extends BlockSand {
+public class fzCobbleStone extends BlockSand {
 
     public static boolean fallInstantly = false;
-   
-    public fzDirt(int par1)
+    public fzCobbleStone(int par1)
     {
-        super(par1, Material.ground);
+        super(par1, Material.rock);
         this.setCreativeTab(CreativeTabs.tabBlock);
-        
     }
 
-    public fzDirt(int par1, Material par2Material)
+
+    public fzCobbleStone(int par1, Material par2Material)
     {
         super(par1, par2Material);
     }
-  
-@Override
-@SideOnly(Side.CLIENT)
-public void registerIcons(IconRegister par1IconRegister) {
-	// TODO Auto-generated method stub
-  this.blockIcon =	par1IconRegister.registerIcon("dirt");
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister) {
+    	// TODO Auto-generated method stub
+      this.blockIcon =	par1IconRegister.registerIcon("stonebrick");
+      
+    }
 
-}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
+    		int par3, int par4, int par5) {
+    	// TODO Auto-generated method stub
+    	return this.blockIcon;
+    }
 
-@Override
-@SideOnly(Side.CLIENT)
-public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
-		int par3, int par4, int par5) {
-	// TODO Auto-generated method stub
-	return this.blockIcon;
-}
-
-
-
-
-    /**
-     * Called whenever the block is added into the world. Args: world, x, y, z
-     */
     public void onBlockAdded(World par1World, int par2, int par3, int par4)
     {
         par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, this.tickRate(par1World));
     }
 
-    /**
-     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
-     * their own) Args: x, y, z, neighbor blockID
-     */
+    
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5)
     {
         par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, this.tickRate(par1World));
     }
 
-    /**
-     * Ticks the block if it's been scheduled
-     */
+  
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         if (!par1World.isRemote)
@@ -78,9 +66,6 @@ public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
         }
     }
 
-    /**
-     * If there is space to fall below will start this block falling
-     */
     private void tryToFall(World par1World, int par2, int par3, int par4)
     {
         if (canFallBelow(par1World, par2, par3 - 1, par4) && par3 >= 0)
@@ -113,22 +98,14 @@ public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
         }
     }
 
-    /**
-     * Called when the falling block entity for this block is created
-     */
     protected void onStartFalling(EntityFallingSand par1EntityFallingSand) {}
 
-    /**
-     * How many world ticks before ticking
-     */
     public int tickRate(World par1World)
     {
         return 2;
     }
 
-    /**
-     * Checks to see if the sand can fall into the block below it
-     */
+
     public static boolean canFallBelow(World par0World, int par1, int par2, int par3)
     {
         int l = par0World.getBlockId(par1, par2, par3);
@@ -148,9 +125,6 @@ public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
         }
     }
 
-    /**
-     * Called when the falling block entity for this block hits the ground and turns back into a block
-     */
     public void onFinishFalling(World par1World, int par2, int par3, int par4, int par5) {}
 }
 

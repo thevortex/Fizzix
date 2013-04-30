@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityFallingSand;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -37,7 +38,7 @@ public class fzClay extends BlockSand {
       this.blockIcon =	par1IconRegister.registerIcon("clay");
       
     }
-
+   
     @Override
     @SideOnly(Side.CLIENT)
     public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
