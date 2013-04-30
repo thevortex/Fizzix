@@ -39,20 +39,20 @@ public class Fizzix {
 	 @PreInit
 	 public void preInit(FMLPreInitializationEvent event)
 	 {
-		// Block.blocksList[2] = null;
+		 Block.blocksList[2] = null;
 		 Block.blocksList[3] = null;
 		 Block.blocksList[4] = null;
 		 Block.blocksList[82] = null;
 		 Block.blocksList[88] = null;
 		 
 		 
-		// Grass = new fzGrass(2).setUnlocalizedName("grass");
+		 Grass = new fzGrass(2).setHardness(0.6F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("grass");
 		 Dirt = new fzDirt(3,Material.ground).setUnlocalizedName("dirt").setHardness(0.5F).setStepSound(Block.soundGravelFootstep);
 		 CobbleStone = new fzCobbleStone(4,Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("stonebrick");
 		 Clay = new fzClay(82,Material.clay).setHardness(0.6F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("clay");
 		 SoulSand = new fzSoulSand(88,Material.sand).setHardness(0.5F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("hellsand");
 		 
-		 //GameRegistry.registerBlock(Grass,"grass");
+		 GameRegistry.registerBlock(Grass,"grass");
 		 GameRegistry.registerBlock(Dirt,"dirt");
 		 GameRegistry.registerBlock(CobbleStone,"stonebrick");
 		 GameRegistry.registerBlock(Clay,"clay");

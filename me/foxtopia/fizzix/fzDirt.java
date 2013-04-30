@@ -38,7 +38,11 @@ public void registerIcons(IconRegister par1IconRegister) {
   this.blockIcon =	par1IconRegister.registerIcon("dirt");
 
 }
-
+@SideOnly(Side.CLIENT)
+public Icon getIcon(int i,int j)
+{
+	return this.blockIcon;
+}
 @Override
 @SideOnly(Side.CLIENT)
 public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
