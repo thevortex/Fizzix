@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 public class fzClay extends BlockSand {
 
     public static boolean fallInstantly = false;
-
+    public static Icon txt;
     public fzClay(int par1)
     {
         super(par1, Material.clay);
@@ -34,10 +34,17 @@ public class fzClay extends BlockSand {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister) {
-    
-    	par1IconRegister.registerIcon("clay");
+    	// TODO Auto-generated method stub
+      txt =	par1IconRegister.registerIcon("clay");
+     
     }
-
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
+    		int par3, int par4, int par5) {
+    	// TODO Auto-generated method stub
+    	return this.txt;
+    }
     public int idDropped(int par1, Random par2Random, int par3)
     {
         return Item.clay.itemID;

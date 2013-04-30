@@ -11,12 +11,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityFallingSand;
+import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class fzDirt extends BlockSand {
 
     public static boolean fallInstantly = false;
-
+    public Icon txt;
     public fzDirt(int par1)
     {
         super(par1, Material.ground);
@@ -32,9 +34,16 @@ public class fzDirt extends BlockSand {
 @SideOnly(Side.CLIENT)
 public void registerIcons(IconRegister par1IconRegister) {
 	// TODO Auto-generated method stub
-	par1IconRegister.registerIcon("dirt");
+  txt =	par1IconRegister.registerIcon("dirt");
+ 
 }
-
+@Override
+@SideOnly(Side.CLIENT)
+public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
+		int par3, int par4, int par5) {
+	// TODO Auto-generated method stub
+	return this.txt;
+}
     /**
      * Called whenever the block is added into the world. Args: world, x, y, z
      */

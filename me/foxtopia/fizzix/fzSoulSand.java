@@ -14,10 +14,15 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityFallingSand;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class fzSoulSand extends BlockSand
 {
+	public static Icon txt;
+
+    public static boolean fallInstantly = false;
     public fzSoulSand(int par1)
     {
         super(par1, Material.sand);
@@ -30,10 +35,17 @@ public class fzSoulSand extends BlockSand
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister) {
-    	
-    	par1IconRegister.registerIcon("hellsand");
+    	// TODO Auto-generated method stub
+      txt =	par1IconRegister.registerIcon("hellsand");
+     
     }
-
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
+    		int par3, int par4, int par5) {
+    	// TODO Auto-generated method stub
+    	return this.txt;
+    }
    
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
