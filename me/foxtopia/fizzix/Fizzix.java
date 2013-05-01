@@ -44,7 +44,19 @@ public class Fizzix {
 	 @PreInit
 	 public void preInit(FMLPreInitializationEvent event) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, ClassNotFoundException
 	 {
-
+		 /*
+		 Block.blocksList[3] = null;
+		 Block.blocksList[3] = (new fzDirt(3)).setHardness(0.5F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("dirt");
+   
+		 Block.blocksList[4] = null;
+		 Block.blocksList[4] = (new fzCobbleStone(4,Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("stonebrick"));
+		 
+		 Block.blocksList[82] = null;
+		 Block.blocksList[82] = (new fzClay(82,Material.clay).setHardness(0.6F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("clay"));
+		 
+		 Block.blocksList[88] = null;
+		 Block.blocksList[88] = (new fzSoulSand(88,Material.sand).setHardness(0.5F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("hellsand"));
+		 */
 		 
 		try {
 			Class<?> modClass = Class.forName("net.minecraft.block.Block");
@@ -89,7 +101,7 @@ public class Fizzix {
 				  
 				  
 				}  catch (ClassNotFoundException e) {
-					Class<?> modClass2 = Class.forName("apa");
+					Class<?> modClass2 = Class.forName("apa.class");
 					//Dirt
 					  Field fieldDirt2 = modClass2.getDeclaredField("z");
 				      fieldDirt2.setAccessible(true);
@@ -97,7 +109,7 @@ public class Fizzix {
 				      modifiersField.setAccessible(true);
 				      modifiersField.setInt(fieldDirt2, fieldDirt2.getModifiers() & ~Modifier.FINAL);
 				      Block.blocksList[3] = null;
-				      fieldDirt2.set(null,(new fzDirt(3)).setHardness(0.5F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("dirt"));
+				      fieldDirt2.set(fieldDirt2,(new fzDirt(3)).setHardness(0.5F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("dirt"));
 					
 					//Cobble
 				      Field fieldCobble2 = modClass2.getDeclaredField("A");
@@ -145,6 +157,8 @@ public class Fizzix {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+		
+		 
 		 
 	 }
 	
