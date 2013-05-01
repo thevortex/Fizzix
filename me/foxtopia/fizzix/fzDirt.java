@@ -140,6 +140,8 @@ public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
         int b = Block.fence.blockID;
         int fence1 = Fizzix.ForestryBlockIdA;
         int fence2 = Fizzix.ForestryBlockIdB;
+        int q = Fizzix.QuartzPillar;
+        int w = Fizzix.cWall;
         if (l == 0)
         {
         	int f1 = par0World.getBlockId(par1 -1, par2, par3);
@@ -162,6 +164,13 @@ public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
         	if ( (f1 == fence2) || (f2 == fence2) || (f3 == fence2) || (f4 == fence2) || (f5 == fence2) || (f6 == fence2) || (f7 == fence2) || (f8 == fence2)){
         		return false;
         	}
+        	if ( (f1 == w) || (f2 == w) || (f3 == w) || (f4 == w) || (f5 == w) || (f6 == w) || (f7 == w) || (f8 == w)){
+        		return false;
+        	}
+        	if ( (f1 == q) || (f2 == q) || (f3 == q) || (f4 == q) || (f5 == q) || (f6 == q) || (f7 == q) || (f8 == q)){
+        		return false;
+        	}
+        	
             return true;
         }
         else if (l == Block.fire.blockID)

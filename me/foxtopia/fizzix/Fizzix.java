@@ -34,7 +34,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid = "Fizzix", name = "Fizzix",dependencies="after:Forestry", version = "1.2")
+@Mod(modid = "Fizzix", name = "Fizzix",dependencies="after:Forestry", version = "1.3")
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
 public class Fizzix {
 
@@ -42,6 +42,8 @@ public class Fizzix {
 	 public HashMap<String,Integer> modFences = new HashMap<String,Integer>();
 	 public static Integer ForestryBlockIdA;
 	 public static Integer ForestryBlockIdB;
+	 public static Integer QuartzPillar = Block.blockNetherQuartz.blockID;
+	 public static Integer cWall = Block.cobblestoneWall.blockID;
 	 
 	 public Fizzix()
 	 {
@@ -91,12 +93,15 @@ public class Fizzix {
 				  Block.blocksList[88] = null;
 				  fieldhSand.set(fieldhSand,(new fzSoulSand(88,Material.sand).setHardness(0.5F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("hellsand")));
 	
+				  
+				  
 				if (!Loader.isModLoaded("Forestry"))
 				{
 					ForestryBlockIdA = Block.fence.blockID;
 					ForestryBlockIdB = Block.netherFence.blockID;
 					return;
 				}
+				
 			Class<?> ForestryConfig = Class.forName("forestry.core.config.ForestryBlock");
 				Field fences1 = ForestryConfig.getDeclaredField("fences1");
 			    FMLLog.fine("Forestry Located :" + fences1.getName(), (Object[])null);
