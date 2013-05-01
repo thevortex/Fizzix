@@ -61,8 +61,9 @@ public class Fizzix {
 		try {
 			Class<?> modClass = Class.forName("net.minecraft.block.Block");
 			try {
-				final Field field = modClass.getDeclaredField("dirt");
+				Field field = modClass.getDeclaredField("dirt");
 				field.setAccessible(true);
+				
 				try {
 					field.set(field,Dirt);
 				} catch (IllegalArgumentException e) {
