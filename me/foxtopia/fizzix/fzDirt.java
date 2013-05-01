@@ -136,7 +136,7 @@ public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
     public static boolean canFallBelow(World par0World, int par1, int par2, int par3)
     {
         int l = par0World.getBlockId(par1, par2, par3);
-
+        int a = Block.netherFence.blockID;
         int b = Block.fence.blockID;
         if (l == 0)
         {
@@ -149,6 +149,9 @@ public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
         	int f7 = par0World.getBlockId(par1 +1, par2, par3 -1);
         	int f8 = par0World.getBlockId(par1 +1, par2, par3 +1);
         	if ( (f1 == b) || (f2 == b) || (f3 == b) || (f4 == b) || (f5 == b) || (f6 == b) || (f7 == b) || (f8 == b)){
+        		return false;
+        	}
+        	if ( (f1 == a) || (f2 == a) || (f3 == a) || (f4 == a) || (f5 == a) || (f6 == a) || (f7 == a) || (f8 == a)){
         		return false;
         	}
             return true;

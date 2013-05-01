@@ -45,37 +45,50 @@ public class Fizzix {
 	 @PreInit
 	 public void preInit(FMLPreInitializationEvent event)
 	 {
-		 
-		 Block.blocksList[4] = null;
-		 Item.itemsList[4] = null;
-		 
-		 Block.blocksList[82] = null;
-		 Item.itemsList[82] = null;
-		 
-		 Block.blocksList[88] = null;
-		 Item.itemsList[88] = null;
-		 
-		 
-		 //Dirt = new fzDirt(3,Material.ground).setUnlocalizedName("dirt").setHardness(0.5F).setStepSound(Block.soundGravelFootstep);
-		 CobbleStone = new fzCobbleStone(4,Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("stonebrick");
-		 Clay = new fzClay(82,Material.clay).setHardness(0.6F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("clay");
-		 SoulSand = new fzSoulSand(88,Material.sand).setHardness(0.5F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("hellsand");
-		 
-		
-		 GameRegistry.registerBlock(CobbleStone,"stonebrick");
-		 GameRegistry.registerBlock(Clay,"clay");
-		 GameRegistry.registerBlock(SoulSand,"hellsand");
+
 		 
 		try {
 			Class<?> modClass = Class.forName("net.minecraft.block.Block");
-			
-				Field field = modClass.getDeclaredField("dirt");
-				field.setAccessible(true);
-				 Field modifiersField = Field.class.getDeclaredField("modifiers");
+				//Dirt
+				  Field fieldDirt = modClass.getDeclaredField("dirt");
+			      fieldDirt.setAccessible(true);
+				  Field modifiersField = Field.class.getDeclaredField("modifiers");
 			      modifiersField.setAccessible(true);
-			      modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+			      modifiersField.setInt(fieldDirt, fieldDirt.getModifiers() & ~Modifier.FINAL);
 			      Block.blocksList[3] = null;
-				field.set(field,(new fzDirt(3)).setHardness(0.5F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("dirt"));
+			      fieldDirt.set(fieldDirt,(new fzDirt(3)).setHardness(0.5F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("dirt"));
+				
+				//Cobble
+			      Field fieldCobble = modClass.getDeclaredField("cobblestone");
+			      fieldCobble.setAccessible(true);
+				  Field modifiersFieldCobble = Field.class.getDeclaredField("modifiers");
+				  modifiersFieldCobble.setAccessible(true);
+				  modifiersFieldCobble.setInt(fieldCobble, fieldCobble.getModifiers() & ~Modifier.FINAL);
+				  Block.blocksList[4] = null;
+				  fieldCobble.set(fieldCobble,(new fzCobbleStone(4,Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("stonebrick")));
+					
+				
+				//Clay
+			      Field fieldClay = modClass.getDeclaredField("blockClay");
+			      fieldClay.setAccessible(true);
+				  Field modifiersFieldClay = Field.class.getDeclaredField("modifiers");
+				  modifiersFieldClay.setAccessible(true);
+				  modifiersFieldClay.setInt(fieldClay, fieldClay.getModifiers() & ~Modifier.FINAL);
+				  Block.blocksList[82] = null;
+				  fieldClay.set(fieldClay,(new fzClay(82,Material.clay).setHardness(0.6F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("clay")));
+	
+				
+				//SoulSand
+			      Field fieldhSand = modClass.getDeclaredField("slowSand");
+			      fieldhSand.setAccessible(true);
+				  Field modifiersFieldhSand = Field.class.getDeclaredField("modifiers");
+				  modifiersFieldhSand.setAccessible(true);
+				  modifiersFieldhSand.setInt(fieldhSand, fieldhSand.getModifiers() & ~Modifier.FINAL);
+				  Block.blocksList[88] = null;
+				  fieldhSand.set(fieldhSand,(new fzSoulSand(88,Material.sand).setHardness(0.5F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("hellsand")));
+	
+				  
+				  
 				}  catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
