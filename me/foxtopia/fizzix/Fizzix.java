@@ -1,13 +1,14 @@
 package me.foxtopia.fizzix;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.bouncycastle.asn1.cms.MetaData;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-
+import forestry.api.core.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockGrass;
@@ -33,17 +34,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
 public class Fizzix {
 
-	public static Block Grass;
-	public static Block Dirt;
-	public static Block Clay;
-	public static Block SoulSand;
-	public static Block CobbleStone;
+	
+	 public List<Integer> modFences;
+	 
 	 public Fizzix()
 	 {
 		
 	 }
 	 @PreInit
-	 public void preInit(FMLPreInitializationEvent event)
+	 public void preInit(FMLPreInitializationEvent event) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, ClassNotFoundException
 	 {
 
 		 
@@ -56,7 +55,7 @@ public class Fizzix {
 			      modifiersField.setAccessible(true);
 			      modifiersField.setInt(fieldDirt, fieldDirt.getModifiers() & ~Modifier.FINAL);
 			      Block.blocksList[3] = null;
-			      fieldDirt.set(fieldDirt,(new fzDirt(3)).setHardness(0.5F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("dirt"));
+			      fieldDirt.set(null,(new fzDirt(3)).setHardness(0.5F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("dirt"));
 				
 				//Cobble
 			      Field fieldCobble = modClass.getDeclaredField("cobblestone");
@@ -90,6 +89,46 @@ public class Fizzix {
 				  
 				  
 				}  catch (ClassNotFoundException e) {
+					Class<?> modClass2 = Class.forName("apa");
+					//Dirt
+					  Field fieldDirt2 = modClass2.getDeclaredField("z");
+				      fieldDirt2.setAccessible(true);
+					  Field modifiersField = Field.class.getDeclaredField("modifiers");
+				      modifiersField.setAccessible(true);
+				      modifiersField.setInt(fieldDirt2, fieldDirt2.getModifiers() & ~Modifier.FINAL);
+				      Block.blocksList[3] = null;
+				      fieldDirt2.set(null,(new fzDirt(3)).setHardness(0.5F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("dirt"));
+					
+					//Cobble
+				      Field fieldCobble2 = modClass2.getDeclaredField("A");
+				      fieldCobble2.setAccessible(true);
+					  Field modifiersFieldCobble = Field.class.getDeclaredField("modifiers");
+					  modifiersFieldCobble.setAccessible(true);
+					  modifiersFieldCobble.setInt(fieldCobble2, fieldCobble2.getModifiers() & ~Modifier.FINAL);
+					  Block.blocksList[4] = null;
+					  fieldCobble2.set(fieldCobble2,(new fzCobbleStone(4,Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("stonebrick")));
+						
+					
+					//Clay
+				      Field fieldClay2 = modClass2.getDeclaredField("ba");
+				      fieldClay2.setAccessible(true);
+					  Field modifiersFieldClay2 = Field.class.getDeclaredField("modifiers");
+					  modifiersFieldClay2.setAccessible(true);
+					  modifiersFieldClay2.setInt(fieldClay2, fieldClay2.getModifiers() & ~Modifier.FINAL);
+					  Block.blocksList[82] = null;
+					  fieldClay2.set(fieldClay2,(new fzClay(82,Material.clay).setHardness(0.6F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("clay")));
+		
+					
+					//SoulSand
+				      Field fieldhSand2 = modClass2.getDeclaredField("bg");
+				      fieldhSand2.setAccessible(true);
+					  Field modifiersFieldhSand2 = Field.class.getDeclaredField("modifiers");
+					  modifiersFieldhSand2.setAccessible(true);
+					  modifiersFieldhSand2.setInt(fieldhSand2, fieldhSand2.getModifiers() & ~Modifier.FINAL);
+					  Block.blocksList[88] = null;
+					  fieldhSand2.set(fieldhSand2,(new fzSoulSand(88,Material.sand).setHardness(0.5F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("hellsand")));
+		
+					  
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
@@ -100,6 +139,7 @@ public class Fizzix {
 					e.printStackTrace();
 				} catch (NoSuchFieldException e) {
 					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (SecurityException e) {
 					// TODO Auto-generated catch block
