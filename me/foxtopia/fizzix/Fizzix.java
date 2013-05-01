@@ -6,7 +6,10 @@ import org.bouncycastle.asn1.cms.MetaData;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockGrass;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -42,50 +45,53 @@ public class Fizzix {
 	 @PreInit
 	 public void preInit(FMLPreInitializationEvent event)
 	 {
-		 Block.blocksList[3] = null;
+		 
 		 Block.blocksList[4] = null;
+		 Item.itemsList[4] = null;
+		 
 		 Block.blocksList[82] = null;
+		 Item.itemsList[82] = null;
+		 
 		 Block.blocksList[88] = null;
+		 Item.itemsList[88] = null;
 		 
 		 
-		 Dirt = new fzDirt(3,Material.ground).setUnlocalizedName("dirt").setHardness(0.5F).setStepSound(Block.soundGravelFootstep);
+		 //Dirt = new fzDirt(3,Material.ground).setUnlocalizedName("dirt").setHardness(0.5F).setStepSound(Block.soundGravelFootstep);
 		 CobbleStone = new fzCobbleStone(4,Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("stonebrick");
 		 Clay = new fzClay(82,Material.clay).setHardness(0.6F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("clay");
 		 SoulSand = new fzSoulSand(88,Material.sand).setHardness(0.5F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("hellsand");
 		 
-		 GameRegistry.registerBlock(Dirt,"dirt");
+		
 		 GameRegistry.registerBlock(CobbleStone,"stonebrick");
 		 GameRegistry.registerBlock(Clay,"clay");
 		 GameRegistry.registerBlock(SoulSand,"hellsand");
 		 
 		try {
 			Class<?> modClass = Class.forName("net.minecraft.block.Block");
-			try {
+			
 				Field field = modClass.getDeclaredField("dirt");
 				field.setAccessible(true);
-				
-				try {
-					field.set(field,Dirt);
-				} catch (IllegalArgumentException e) {
+				 Field modifiersField = Field.class.getDeclaredField("modifiers");
+			      modifiersField.setAccessible(true);
+			      modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+			      Block.blocksList[3] = null;
+				field.set(field,(new fzDirt(3)).setHardness(0.5F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("dirt"));
+				}  catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (NoSuchFieldException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			} catch (NoSuchFieldException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		 
 	 }
 	
