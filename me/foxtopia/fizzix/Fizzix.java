@@ -21,6 +21,7 @@ import net.minecraft.logging.LogAgent;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.Mod.Instance;
@@ -90,7 +91,12 @@ public class Fizzix {
 				  Block.blocksList[88] = null;
 				  fieldhSand.set(fieldhSand,(new fzSoulSand(88,Material.sand).setHardness(0.5F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("hellsand")));
 	
-				  
+				if (!Loader.isModLoaded("Forestry"))
+				{
+					ForestryBlockIdA = Block.fence.blockID;
+					ForestryBlockIdB = Block.netherFence.blockID;
+					return;
+				}
 			Class<?> ForestryConfig = Class.forName("forestry.core.config.ForestryBlock");
 				Field fences1 = ForestryConfig.getDeclaredField("fences1");
 			    FMLLog.fine("Forestry Located :" + fences1.getName(), (Object[])null);
