@@ -119,9 +119,20 @@ public class fzClay extends BlockSand {
     public static boolean canFallBelow(World par0World, int par1, int par2, int par3)
     {
         int l = par0World.getBlockId(par1, par2, par3);
-
+        int b = Block.fence.blockID;
         if (l == 0)
         {
+        	int f1 = par0World.getBlockId(par1 -1, par2, par3);
+        	int f2 = par0World.getBlockId(par1 -1, par2, par3 -1);
+        	int f3 = par0World.getBlockId(par1 -1, par2, par3 +1);
+        	int f4 = par0World.getBlockId(par1, par2, par3 -1);
+        	int f5 = par0World.getBlockId(par1, par2, par3 +1);
+        	int f6 = par0World.getBlockId(par1 +1, par2, par3);
+        	int f7 = par0World.getBlockId(par1 +1, par2, par3 -1);
+        	int f8 = par0World.getBlockId(par1 +1, par2, par3 +1);
+        	if ( (f1 == b) || (f2 == b) || (f3 == b) || (f4 == b) || (f5 == b) || (f6 == b) || (f7 == b) || (f8 == b)){
+        		return false;
+        	}
             return true;
         }
         else if (l == Block.fire.blockID)
