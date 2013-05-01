@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import org.bouncycastle.asn1.cms.MetaData;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGrass;
 import net.minecraft.block.material.Material;
@@ -56,7 +58,33 @@ public class Fizzix {
 		 GameRegistry.registerBlock(Clay,"clay");
 		 GameRegistry.registerBlock(SoulSand,"hellsand");
 		 
-		 Block.dirt = Dirt;
+		try {
+			Class<?> modClass = Class.forName("net.minecraft.block.Block");
+			try {
+				final Field field = modClass.getDeclaredField("dirt");
+				field.setAccessible(true);
+				try {
+					field.set(field,Dirt);
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (NoSuchFieldException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		 
 	 }
 	
