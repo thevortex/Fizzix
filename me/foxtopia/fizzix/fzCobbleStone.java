@@ -111,6 +111,8 @@ public class fzCobbleStone extends BlockSand {
         int l = par0World.getBlockId(par1, par2, par3);
         int a = Block.netherFence.blockID;
         int b = Block.fence.blockID;
+        int fence1 = Fizzix.ForestryBlockIdA;
+        int fence2 = Fizzix.ForestryBlockIdB;
         if (l == 0)
         {
         	int f1 = par0World.getBlockId(par1 -1, par2, par3);
@@ -125,6 +127,12 @@ public class fzCobbleStone extends BlockSand {
         		return false;
         	}
         	if ( (f1 == a) || (f2 == a) || (f3 == a) || (f4 == a) || (f5 == a) || (f6 == a) || (f7 == a) || (f8 == a)){
+        		return false;
+        	}
+        	if ( (f1 == fence1) || (f2 == fence1) || (f3 == fence1) || (f4 == fence1) || (f5 == fence1) || (f6 == fence1) || (f7 == fence1) || (f8 == fence1)){
+        		return false;
+        	}
+        	if ( (f1 == fence2) || (f2 == fence2) || (f3 == fence2) || (f4 == fence2) || (f5 == fence2) || (f6 == fence2) || (f7 == fence2) || (f8 == fence2)){
         		return false;
         	}
             return true;
