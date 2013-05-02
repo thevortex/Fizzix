@@ -17,6 +17,7 @@ import net.minecraft.block.BlockGrass;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.logging.LogAgent;
@@ -65,7 +66,7 @@ public class Fizzix {
 			      modifiersField.setAccessible(true);
 			      modifiersField.setInt(fieldDirt, fieldDirt.getModifiers() & ~Modifier.FINAL);
 			      Block.blocksList[3] = null;
-			      fieldDirt.set(null,(new fzDirt(3)).setHardness(0.5F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("dirt"));
+			      fieldDirt.set(null,(new fzDirt(3)).setHardness(0.5F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("dirt").setCreativeTab(CreativeTabs.tabBlock));
 				
 				//Cobble
 			      Field fieldCobble = modClass.getDeclaredField("field_71978_w");
@@ -74,7 +75,7 @@ public class Fizzix {
 				  modifiersFieldCobble.setAccessible(true);
 				  modifiersFieldCobble.setInt(fieldCobble, fieldCobble.getModifiers() & ~Modifier.FINAL);
 				  Block.blocksList[4] = null;
-				  fieldCobble.set(fieldCobble,(new fzCobbleStone(4,Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("stonebrick")));
+				  fieldCobble.set(fieldCobble,(new fzCobbleStone(4,Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("stonebrick").setCreativeTab(CreativeTabs.tabBlock)));
 				  
 				
 				//Clay
@@ -84,7 +85,7 @@ public class Fizzix {
 				  modifiersFieldClay.setAccessible(true);
 				  modifiersFieldClay.setInt(fieldClay, fieldClay.getModifiers() & ~Modifier.FINAL);
 				  Block.blocksList[82] = null;
-				  fieldClay.set(fieldClay,(new fzClay(82,Material.clay).setHardness(0.6F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("clay")));
+				  fieldClay.set(fieldClay,(new fzClay(82,Material.clay).setHardness(0.6F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("clay").setCreativeTab(CreativeTabs.tabBlock)));
 	
 				
 				//SoulSand
@@ -94,7 +95,7 @@ public class Fizzix {
 				  modifiersFieldhSand.setAccessible(true);
 				  modifiersFieldhSand.setInt(fieldhSand, fieldhSand.getModifiers() & ~Modifier.FINAL);
 				  Block.blocksList[88] = null;
-				  fieldhSand.set(fieldhSand,(new fzSoulSand(88,Material.sand).setHardness(0.5F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("hellsand")));
+				  fieldhSand.set(fieldhSand,(new fzSoulSand(88,Material.sand).setHardness(0.5F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("hellsand").setCreativeTab(CreativeTabs.tabBlock)));
 	
 			
 				//Fix For Cobblestone Stairs		  
@@ -137,7 +138,7 @@ public class Fizzix {
 				      modifiersField.setAccessible(true);
 				      modifiersField.setInt(fieldDirt, fieldDirt.getModifiers() & ~Modifier.FINAL);
 				      Block.blocksList[3] = null;
-				      fieldDirt.set(null,(new fzDirt(3)).setHardness(0.5F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("dirt"));
+				      fieldDirt.set(null,(new fzDirt(3)).setHardness(0.5F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("dirt").setCreativeTab(CreativeTabs.tabBlock));
 					
 					//Cobble
 				      Field fieldCobble = modClass.getDeclaredField("cobblestone");
@@ -146,7 +147,7 @@ public class Fizzix {
 					  modifiersFieldCobble.setAccessible(true);
 					  modifiersFieldCobble.setInt(fieldCobble, fieldCobble.getModifiers() & ~Modifier.FINAL);
 					  Block.blocksList[4] = null;
-					  fieldCobble.set(fieldCobble,(new fzCobbleStone(4,Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("stonebrick")));
+					  fieldCobble.set(fieldCobble,(new fzCobbleStone(4,Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("stonebrick").setCreativeTab(CreativeTabs.tabBlock)));
 						
 					
 					//Clay
@@ -156,7 +157,7 @@ public class Fizzix {
 					  modifiersFieldClay.setAccessible(true);
 					  modifiersFieldClay.setInt(fieldClay, fieldClay.getModifiers() & ~Modifier.FINAL);
 					  Block.blocksList[82] = null;
-					  fieldClay.set(fieldClay,(new fzClay(82,Material.clay).setHardness(0.6F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("clay")));
+					  fieldClay.set(fieldClay,(new fzClay(82,Material.clay).setHardness(0.6F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("clay").setCreativeTab(CreativeTabs.tabBlock)));
 		
 					
 					//SoulSand
@@ -166,7 +167,7 @@ public class Fizzix {
 					  modifiersFieldhSand.setAccessible(true);
 					  modifiersFieldhSand.setInt(fieldhSand, fieldhSand.getModifiers() & ~Modifier.FINAL);
 					  Block.blocksList[88] = null;
-					  fieldhSand.set(fieldhSand,(new fzSoulSand(88,Material.sand).setHardness(0.5F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("hellsand")));
+					  fieldhSand.set(fieldhSand,(new fzSoulSand(88,Material.sand).setHardness(0.5F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("hellsand").setCreativeTab(CreativeTabs.tabBlock)));
 		
 				
 						//Fix For Cobblestone Stairs		  
