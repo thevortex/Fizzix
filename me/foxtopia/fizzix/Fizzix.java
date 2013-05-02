@@ -37,7 +37,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid = "Fizzix", name = "Fizzix",dependencies="after:Forestry;", version = "1.3")
+@Mod(modid = "Fizzix", name = "Fizzix",dependencies="after:Forestry;", version = "1.4")
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
 public class Fizzix {
 
