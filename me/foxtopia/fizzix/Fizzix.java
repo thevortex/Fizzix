@@ -3,6 +3,7 @@ package me.foxtopia.fizzix;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.bouncycastle.asn1.cms.MetaData;
 
@@ -23,6 +24,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.logging.LogAgent;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -38,17 +40,22 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid = "Fizzix", name = "Fizzix",dependencies="after:Forestry;", version = "1.4")
+@Mod(modid = "Fizzix", name = "Fizzix",dependencies="after:Forestry;", version = "1.5")
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
 public class Fizzix {
 
-	
+	 
 	 public HashMap<String,Integer> modFences = new HashMap<String,Integer>();
+	 public fzClay fzC;
+	 public fzCobbleStone fzB;
+	 public fzDirt fzD;
+	 public fzSoulSand fzS;
 	 public static Integer ForestryBlockIdA;
 	 public static Integer ForestryBlockIdB;
 	 public static Integer QuartzPillar = Block.blockNetherQuartz.blockID;
 	 public static Integer cWall = Block.cobblestoneWall.blockID;
-	 
+	 public static Logger log;
+	 public static Fizzix fzX;
 	 public Fizzix()
 	 {
 		
@@ -56,7 +63,10 @@ public class Fizzix {
 	 @PreInit
 	 public void preInit(FMLPreInitializationEvent event) throws IllegalArgumentException, IllegalAccessException, NoSuchMethodException, SecurityException, InstantiationException, InvocationTargetException, ClassNotFoundException, NoSuchFieldException 
 	 {
- 
+		 
+		 MinecraftForge.EVENT_BUS.register(new SoundMan());
+		 
+		 log = FMLLog.getLogger();
 		try {
 			Class<?> modClass = Class.forName("net.minecraft.block.Block");
 				//Dirt
@@ -131,6 +141,16 @@ public class Fizzix {
 				    
 					
 					Class<?> modClass = Class.forName("net.minecraft.block.Block");
+					//Stone
+					/*
+					  Field fieldStone = modClass.getDeclaredField("stone");
+					  fieldStone.setAccessible(true);
+					  Field modifiersFieldStone = Field.class.getDeclaredField("modifiers");
+					  modifiersFieldStone.setAccessible(true);
+					  modifiersFieldStone.setInt(fieldStone, fieldStone.getModifiers() & ~Modifier.FINAL);
+				      Block.blocksList[1] = null;
+				      fieldStone.set(null,(new fzStone(1)).setHardness(1.5F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("stone").setCreativeTab(CreativeTabs.tabBlock));
+					*/
 					//Dirt
 					  Field fieldDirt = modClass.getDeclaredField("dirt");
 				      fieldDirt.setAccessible(true);

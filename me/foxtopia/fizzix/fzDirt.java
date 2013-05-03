@@ -87,10 +87,11 @@ public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
      */
     private void tryToFall(World par1World, int par2, int par3, int par4)
     {
-        if (canFallBelow(par1World, par2, par3 - 1, par4) && par3 >= 0)
+    	
+        if (canFallBelow(par1World, par2, par3 -1, par4) && par3 >= 0)
         {
             byte b0 = 32;
-
+            par1World.playSoundEffect(par2, par3, par4, "rockslide", 1.0F, 1.0F);
             if (!fallInstantly && par1World.checkChunksExist(par2 - b0, par3 - b0, par4 - b0, par2 + b0, par3 + b0, par4 + b0))
             {
                 if (!par1World.isRemote)
@@ -98,15 +99,18 @@ public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
                     EntityFallingSand entityfallingsand = new EntityFallingSand(par1World, (double)((float)par2 + 0.5F), (double)((float)par3 + 0.5F), (double)((float)par4 + 0.5F), this.blockID, par1World.getBlockMetadata(par2, par3, par4));
                     this.onStartFalling(entityfallingsand);
                     par1World.spawnEntityInWorld(entityfallingsand);
+                    par1World.playSoundAtEntity(entityfallingsand, "rockslide", 1.0F, 1.0F);
                 }
             }
             else
             {
                 par1World.setBlockToAir(par2, par3, par4);
-
+                par1World.playSoundEffect(par2,par3,par4,"rockslide", 1.0F, 1.0F);
+                
                 while (canFallBelow(par1World, par2, par3 - 1, par4) && par3 > 0)
                 {
                     --par3;
+                    
                 }
 
                 if (par3 > 0)
@@ -116,6 +120,7 @@ public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
             }
         }
     }
+
 
     /**
      * Called when the falling block entity for this block is created
@@ -127,7 +132,7 @@ public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
      */
     public int tickRate(World par1World)
     {
-        return 2;
+        return 10;
     }
 
     /**
@@ -187,6 +192,11 @@ public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
     /**
      * Called when the falling block entity for this block hits the ground and turns back into a block
      */
-    public void onFinishFalling(World par1World, int par2, int par3, int par4, int par5) {}
+public void onFinishFalling(World par1World, int par2, int par3, int par4, int par5) {
+    	
+    	par1World.playSoundEffect(par2,par3,par4,"rockslide", 1.0F, 1.0F);
+        
+    	
+    }
 }
 

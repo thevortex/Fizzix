@@ -1,7 +1,9 @@
 package me.foxtopia.fizzix;
 
 import java.util.Random;
+import java.util.logging.Logger;
 
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -24,12 +26,14 @@ public class fzClay extends BlockSand {
     {
         super(par1, Material.clay);
         this.setCreativeTab(CreativeTabs.tabBlock);
+        
     }
 
 
     public fzClay(int par1, Material par2Material)
     {
         super(par1, par2Material);
+        
     }
     @Override
     @SideOnly(Side.CLIENT)
@@ -70,18 +74,23 @@ public class fzClay extends BlockSand {
   
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
-        if (!par1World.isRemote)
-        {
-            this.tryToFall(par1World, par2, par3, par4);
-        }
+    	
+	        if (!par1World.isRemote)
+	        {
+	        	
+	            this.tryToFall(par1World, par2, par3, par4);
+	            
+	        }
+      
     }
 
     private void tryToFall(World par1World, int par2, int par3, int par4)
     {
-        if (canFallBelow(par1World, par2, par3 - 1, par4) && par3 >= 0)
+    	
+        if (canFallBelow(par1World, par2, par3 -1, par4) && par3 >= 0)
         {
             byte b0 = 32;
-
+            par1World.playSoundEffect(par2, par3, par4, "rockslide", 1.0F, 1.0F);
             if (!fallInstantly && par1World.checkChunksExist(par2 - b0, par3 - b0, par4 - b0, par2 + b0, par3 + b0, par4 + b0))
             {
                 if (!par1World.isRemote)
@@ -89,15 +98,18 @@ public class fzClay extends BlockSand {
                     EntityFallingSand entityfallingsand = new EntityFallingSand(par1World, (double)((float)par2 + 0.5F), (double)((float)par3 + 0.5F), (double)((float)par4 + 0.5F), this.blockID, par1World.getBlockMetadata(par2, par3, par4));
                     this.onStartFalling(entityfallingsand);
                     par1World.spawnEntityInWorld(entityfallingsand);
+                    par1World.playSoundAtEntity(entityfallingsand, "rockslide", 1.0F, 1.0F);
                 }
             }
             else
             {
                 par1World.setBlockToAir(par2, par3, par4);
-
+                par1World.playSoundEffect(par2,par3,par4,"rockslide", 1.0F, 1.0F);
+                
                 while (canFallBelow(par1World, par2, par3 - 1, par4) && par3 > 0)
                 {
                     --par3;
+                    
                 }
 
                 if (par3 > 0)
@@ -108,11 +120,13 @@ public class fzClay extends BlockSand {
         }
     }
 
-    protected void onStartFalling(EntityFallingSand par1EntityFallingSand) {}
+    protected void onStartFalling(EntityFallingSand par1EntityFallingSand) {
+    	
+    }
 
     public int tickRate(World par1World)
     {
-        return 2;
+        return 10;
     }
 
 
@@ -167,6 +181,11 @@ public class fzClay extends BlockSand {
         }
     }
 
-    public void onFinishFalling(World par1World, int par2, int par3, int par4, int par5) {}
+    public void onFinishFalling(World par1World, int par2, int par3, int par4, int par5) {
+    	
+    	par1World.playSoundEffect(par2,par3,par4,"rockslide", 1.0F, 1.0F);
+        
+    	
+    }
 }
 
